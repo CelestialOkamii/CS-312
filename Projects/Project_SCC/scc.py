@@ -6,13 +6,42 @@ GRAPH = dict[str, list[str]]
 sys.setrecursionlimit(10000)
 
 
-def prepost(graph: GRAPH) -> list[dict[str, list[int]]]:
+def prepost(graph : GRAPH) -> list[dict[str, list[int]]]:
     """
     Return a list of DFS trees.
     Each tree is a dict mapping each node label to a list of [pre, post] order numbers.
     The graph should be searched in order of the keys in the dictionary.
     """
-    return []
+    keys = list(graph.keys())
+    dfs_forest = list()
+    current_tree = {}
+    trees = {}
+    count = 1
+    if not isinstance(graph.get(keys[0]), list):
+        for item in keys:
+            graph[item] = list(graph.get(item))
+    for key in keys:
+        if not key in trees:
+            current_tree, count = dfs(graph, key, current_tree, count, trees)
+            dfs_forest.append(current_tree)
+            count += 1
+            trees = trees | current_tree
+            current_tree = {}
+    return dfs_forest
+
+
+def dfs(graph, node, current_tree, count, trees):
+    current_tree[node] = [count]
+    for item in graph[node]:
+        if not item in current_tree and not item in trees:
+            current_tree, count = dfs(graph, item, current_tree, count + 1, trees)
+        elif item in trees or not item == graph[node][-1]:
+            continue
+        else:
+            current_tree[node].append(count + 1)
+            return current_tree, count + 1
+    current_tree[node].append(count + 1)
+    return current_tree, count + 1
 
 
 def find_sccs(graph: GRAPH) -> list[set[str]]:
@@ -34,5 +63,3 @@ def classify_edges(graph: GRAPH, trees: list[dict[str, list[int]]]) -> dict[str,
     }
 
     return classification
-
-
