@@ -60,7 +60,7 @@ def dfs(graph, node, current_tree, count, trees):
     return current_tree, count + 1                          #O(1) - return a finished dict and a number is constant
 ```
 
-The call to dfs takes the longest because dfs goes over every node and every nodes descendant once which leads to a time complexity of O(n * E) (number of nodes * number of edges leading to descendants).
+The call to dfs takes the longest because dfs goes over every node and every nodes descendant once which leads to a time complexity of O(n + E) (number of nodes + number of edges leading to descendants).
 
 #### Space
 
@@ -98,8 +98,8 @@ def dfs(graph, node, current_tree, count, trees):
     return current_tree, count + 1                   #O(1) - returning a finished dict and number takes no new space
 ```
 
-dfs_trees will take the most memory by the end of the program. This is because for each new tree it will have to make room for a new dict n nodes long and will have to do this for t number of trees.
-This makes the total space complexity O(n * t).
+dfs_trees will take the most memory by the end of the program. This is because for each new tree it will have to make room for a new dict n nodes long and will have to do this for t number of trees, 
+however adding the trees should take negligible space. This makes the total space complexity O(n).
 
 ### Empirical Data
 
@@ -144,7 +144,7 @@ This makes the total space complexity O(n * t).
 
 ### Comparison of Theoretical and Empirical Results
 
-- Theoretical order of growth: O(n * E)
+- Theoretical order of growth: O(n + E)
 - Measured constant of proportionality for theoretical order: 5.453272479725068e-07
 
 ![img](Figure_1.png)
@@ -155,7 +155,6 @@ This makes the total space complexity O(n * t).
 
 The theoretical growth matches the empirical growth.
 
-*Fill me in*
 
 ## Core
 
@@ -253,4 +252,5 @@ The theoretical growth matches the empirical growth.
 
 ## Project Review
 
-*Fill me in*
+I went over all of my report and code with Zachary Smith and we did this for over 15 minutes.
+We discussed the time and space complexities of my functions and went over my empirical data.
