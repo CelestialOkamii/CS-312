@@ -7,10 +7,10 @@ from _runtimes import runtimes
 def main():
     # Define this
     def theoretical_big_o(v, e):
-        return 1
+        return v + e
 
     # Fill in from result using compute_coefficient
-    coeff = 1
+    coeff = 5.453272479725068e-07
 
     vv = [v for _, _, v, _, _ in runtimes]
     ee = [e for _, _, _, e, _ in runtimes]
@@ -39,7 +39,7 @@ def main():
     )
 
     # Update title, legend, and axis labels as needed
-    ax.legend(['Observed', 'Theoretical O(FILL ME IN)'])
+    ax.legend(['Observed', 'Theoretical O(V+E)'])
     ax.set_xlabel('|V|')
     ax.set_ylabel('|E|')
     ax.set_zlabel('Runtime')
@@ -47,10 +47,10 @@ def main():
 
     # You are welcome to play with the view angle as you'd like
     # elev=90 might be interesting
-    ax.view_init(elev=10, azim=-60)
+    ax.view_init(elev=10, azim=-100)
 
     fig.show()
-    fig.savefig('_analysis/empirical.svg')
+    fig.savefig('_analysis_empirical.svg')
 
 
 if __name__ == '__main__':
