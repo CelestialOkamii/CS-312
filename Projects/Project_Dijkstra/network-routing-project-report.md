@@ -44,13 +44,19 @@ class LinearPQ:
         weight_info = self.__find_min()
         self.linear_queue.pop(weight_info[0])
         return weight_info
+    
+    
+    def is_empty(self):  # O(1) - takes constant time to check length of dict
+            if len(self.linear_queue) == 0:
+                return True
+            return False
 
 
 def run_dijkstras(graph, pq, source, target): # O(n^2) - because the while loop runs n times and for every time it runs it will go through an operation that takes O(n)
     weights = {source: [None, 0]} 
     path = []
     pq.insert([source, None, 0])
-    while not len(pq) != 0:             # O(n^2) because it will run through everything in the pq and each time perform a O(n) operation
+    while not pq.is_empty():             # O(n^2) because it will run through everything in the pq and each time perform a O(n) operation
         min_value = pq.remove_min()     # O(n) - because remove_min() is a O(n) operation
         current_node = min_value[0]
         prev_node = min_value[1]
@@ -116,13 +122,19 @@ class LinearPQ:
         weight_info = self.__find_min()
         self.linear_queue.pop(weight_info[0])
         return weight_info
+    
+    
+    def is_empty(self):  # O(1) - takes no new space to check length of dict
+            if len(self.linear_queue) == 0:
+                return True
+            return False
 
 
 def run_dijkstras(graph, pq, source, target): # O(v + e) - the graph that is passed in has to have a dict with v number of nodes and each v has e number of values in it's dict
     weights = {source: [None, 0]} 
     path = []
     pq.insert([source, None, 0])
-    while not len(pq) != 0:
+    while not pq.is_empty():
         min_value = pq.remove_min()     # O(n) - because remove_min() is a O(n) operation
         current_node = min_value[0]
         prev_node = min_value[1]
@@ -242,13 +254,19 @@ class HeapPQ:
             self.map_queue[self.heap_queue[smallest][0]][0] = smallest
             i = smallest
         return min_value
+    
+    
+    def is_empty(self):  # O(1) - takes constant time to check length of list
+            if len(self.heap_queue) == 0:
+                return True
+            return False
 
 
 def run_dijkstras(graph, pq, source, target): # O((v+e) log n) - the while loop takes the most time so its complexity becomes the complexity for the whole function
     weights = {source: [None, 0]} 
     path = []
     pq.insert([source, None, 0])        # O(1) - because this is the only item in the heap it takes constant time to add it as there will e no comparisons or moving of positions
-    while not len(pq) != 0:             # O((v + e) log n) - each call to insert or remove the minimum from the priority queue takes log n amount of time and these functions are called once per node, v, and each node has e number of paths leading away that have to be explored
+    while not pq.is_empty():             # O((v + e) log n) - each call to insert or remove the minimum from the priority queue takes log n amount of time and these functions are called once per node, v, and each node has e number of paths leading away that have to be explored
         min_value = pq.remove_min()     # O(log n) - because remove_min() is a O(log n) operation
         current_node = min_value[0]
         prev_node = min_value[1]
@@ -337,13 +355,19 @@ class HeapPQ:
             self.map_queue[self.heap_queue[smallest][0]][0] = smallest
             i = smallest
         return min_value
+    
+    
+    def is_empty(self):  # O(1) - it takes no new space to check the length of a list
+            if len(self.heap_queue) == 0:
+                return True
+            return False
 
 
 def run_dijkstras(graph, pq, source, target): # O(v+e) - the graph itself has v number of nodes and each node has e number of items in it so space is needed for each node, v, and each of its values, e
     weights = {source: [None, 0]} 
     path = []
     pq.insert([source, None, 0])        # O(1) - because this is the only item in the heap it takes constant space to add
-    while not len(pq) != 0:             # O(n) - each call to insert is constant but this function is called n times which means n amount of space has to be allocated
+    while not pq.is_empty():             # O(n) - each call to insert is constant but this function is called n times which means n amount of space has to be allocated
         min_value = pq.remove_min()     # O(1) - because remove_min takes constant space
         current_node = min_value[0]
         prev_node = min_value[1]

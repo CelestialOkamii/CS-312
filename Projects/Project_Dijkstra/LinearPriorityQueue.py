@@ -31,3 +31,9 @@ class LinearPQ:
         weight_info = self.__find_min()
         self.linear_queue.pop(weight_info[0])
         return weight_info
+
+
+    def is_empty(self):
+        if len(self.linear_queue) == 0:
+            return True
+        return False

@@ -53,3 +53,8 @@ class HeapPQ:
             self.map_queue[self.heap_queue[smallest][0]][0] = smallest
             i = smallest
         return min_value
+
+    def is_empty(self):
+        if len(self.heap_queue) == 0:
+            return True
+        return False
