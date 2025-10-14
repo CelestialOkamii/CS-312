@@ -174,6 +174,7 @@ This graph has v number of nodes and each node has a dict for its value which is
 ![img](baseline_empirical.svg)
 
 The theoretical order of growth and actual order of growth match.
+I met with Zach Smith to go over all of this
 
 ## Core
 
@@ -394,10 +395,12 @@ This makes the space cost for the program ***O(v + e)***.
 ![img](core_empirical.svg)
 
 The theoretical and actual order of growth seem to match.
+I met with Zach Smith to go over all of this.
 
 ### Relative Performance Of Linear versus Heap PQ Performance
 
-*Fill me in*
+Overall the performance of my heap and linear priority queue were pretty similar. 
+Until the last two test sizes, my linear queue had better times which I didn't expect, but it makes sense that as the sizes increased my binary heap performed better and stayed pretty consistent compared to my linear queue.
 
 ## Stretch 1
 
