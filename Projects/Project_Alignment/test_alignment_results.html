@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison Report</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            flex-direction: column;
+            font-family: monospace, sans-serif;
+            line-height: 1.4;
+            background-color: #f9f9f9;
+            color: rgb(0, 46, 93);
+        }
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        header, footer {
+            background-color: rgb(0, 46, 93);
+            color: white;
+            text-align: center;
+        }
+        header h1, footer p {
+            margin: 0;
+            padding: 5px 0;
+        }
+        header {
+            margin-bottom: 10px;
+        }
+        footer {
+            margin-top: 10px;
+        }
+        h2 {
+            padding: 5px 0;
+        }
+        .test-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 50px;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .test-result-passed, .test-result-failed {
+            padding: 5px;
+            border-radius: 5px;
+            margin: 10px 50px;
+            position: relative;
+        }
+        .test-result-passed {
+            background-color: #d4edda;
+            border: 2px solid #c3e6cb;
+        }
+        .test-result-failed {
+            background-color: #f8d7da;
+            border: 2px solid #f5c6cb;
+        }
+        .result-header {
+            text-align: center;
+        }
+        .result-header h2 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .result-subheader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            font-size: 1em;
+            padding: 0 10px;
+        }
+        .result-subheader .status, .result-subheader .score {
+            font-size: 1em;
+        }
+        .result-subheader .status h2, .result-subheader .score h2 {
+            display: inline;
+            font-size: 1em;
+            margin-right: 5px;
+        }
+        ul.test-info {
+            list-style-type: none;
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        ul.test-info li {
+            margin: 6px 0;
+        }
+        ul.test-info li.fail {
+            color: #721c24;
+        }
+        ul.test-info li.pass {
+            color: #155724;
+        }
+        .blocked-message {
+            margin: 10px 20px;
+            padding: 10px;
+            font-style: italic;
+            color: #555;
+        }
+        pre.failure-output {
+            background: #fff0f0;
+            border: 1px solid #f5c6cb;
+            padding: 8px;
+            border-radius: 3px;
+            margin-top: 5px;
+            white-space: pre-wrap;
+        }
+        .comparison-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 0 10px;
+        }
+        .section {
+            flex: 1;
+            min-width: 300px;
+        }
+        .content {
+            background: rgb(245, 245, 245);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1>Test Alignment Results</h1>
+        </header>
+        <main class="main-content">
+            <div class="test-summary">
+                <span>Passed: 2 / 3</span>
+                <span>Total Score: 0 / 0</span>
+            </div>
+            
+            
+            <div class="test-result-passed">
+                <div class="content-wrapper">
+                    <div class="result-header">
+                        <h2>baseline</h2>
+                        <div class="result-subheader">
+                            <div class="status">
+                                <h2>Passed</h2>
+                            </div>
+                            <div class="score">
+                                <h2>Score:</h2> 0 / 0
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <ul class="test-info">
+                    
+                        
+                            <li class="pass">Test Small Alignment — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Tiny Dna Alignment — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Tiny Dna Alignment Gaps — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Small Dna Alignment Not Banded — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Empty Sequences — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test One Empty Sequence — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Identical Sequences — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test All Mismatch Sequences — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Alignment With Long Gaps — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Different Match Score — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Different Indel Penalty — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Different Substitution Penalty — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Tie Breaking — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Alignment Scoring Effects — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Medium Dna Alignment — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Large Dna Alignment — Pass</li>
+                        
+                    
+                    </ul>
+                    
+                </div>
+            </div>
+            
+            <div class="test-result-passed">
+                <div class="content-wrapper">
+                    <div class="result-header">
+                        <h2>core</h2>
+                        <div class="result-subheader">
+                            <div class="status">
+                                <h2>Passed</h2>
+                            </div>
+                            <div class="score">
+                                <h2>Score:</h2> 0 / 0
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <ul class="test-info">
+                    
+                        
+                            <li class="pass">Test Small Dna Alignment Banded — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Length Discrepancy Banded — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Alignment Changes With Banded Width — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Medium Dna Alignment Banded — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Massive Dna Alignment Banded — Pass</li>
+                        
+                    
+                    </ul>
+                    
+                </div>
+            </div>
+            
+            <div class="test-result-failed">
+                <div class="content-wrapper">
+                    <div class="result-header">
+                        <h2>stretch2</h2>
+                        <div class="result-subheader">
+                            <div class="status">
+                                <h2>Failed</h2>
+                            </div>
+                            <div class="score">
+                                <h2>Score:</h2> 0 / 0
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <ul class="test-info">
+                    
+                        
+                            <li class="fail">Test Small Dna Alignment Open Gap — Fail</li>
+                            
+                                <pre class="failure-output">align = <function align at 0x000001FD50C46A20>
+
+    @stretch2
+    @with_import('alignment')
+    def test_small_dna_alignment_open_gap(align):
+        score, aseq1, aseq2 = align('GGGGTTTTAAAACCCCTTTT', 'TTTTAAAACCCCTTTTGGGG', gap_open_penalty=10, indel_penalty=.5)
+>       assert score == -24
+E       assert -44.0 == -24
+
+CS-312\Projects\Project_Alignment\test_alignment.py:290: AssertionError</pre>
+                            
+                        
+                    
+                        
+                            <li class="fail">Test Small Dna Alignment Gap Open — Fail</li>
+                            
+                                <pre class="failure-output">align = <function align at 0x000001FD50C46A20>
+
+    @stretch2
+    @with_import('alignment')
+    def test_small_dna_alignment_gap_open(align):
+        score, seq1, seq2 = align('tcgctcatatatccc', 'atataccctggggtg', gap_open_penalty=10, indel_penalty=.5)
+>       assert score == 7
+E       assert -17.0 == 7
+
+CS-312\Projects\Project_Alignment\test_alignment.py:299: AssertionError</pre>
+                            
+                        
+                    
+                        
+                            <li class="fail">Test Medium Dna Alignment Gap Open — Fail</li>
+                            
+                                <pre class="failure-output">align = <function align at 0x000001FD50C46A20>
+
+    @stretch2
+    @with_import('alignment')
+    def test_medium_dna_alignment_gap_open(align):
+        seq1 = 'ataagagtgattggcgatatcggctccgtacgtaccctttctactctcgggctcttccccgttagtttaaatctaatctctttataaacggcacttcc'
+        seq2 = 'ataagagtgattggcgtccgtacgtaccctttctactctcaaactcttgttagtttaaatctaatctaaactttataaacggcacttcctgtgtgtccat'
+    
+        score, aseq1, aseq2 = align(seq1, seq2, gap_open_penalty=10, indel_penalty=.5)
+    
+        expected_align1 = 'ataagagtgattggcgatatcggctccgtacgtaccctttctactctcgggctcttccccgttagtttaaatctaatct---ctttataaacggcactt-----------cc'
+        expected_align2 = 'ataagagtgattgg--------cgtccgtacgtaccctttctactctcaaactctt----gttagtttaaatctaatctaaactttataaacggcacttcctgtgtgtccat'
+    
+>       assert score == -177
+E       assert -233.0 == -177
+
+CS-312\Projects\Project_Alignment\test_alignment.py:315: AssertionError</pre>
+                            
+                        
+                    
+                        
+                            <li class="fail">Test Alignment Changes With Open Gap Penalties — Fail</li>
+                            
+                                <pre class="failure-output">align = <function align at 0x000001FD50C46A20>
+
+    @stretch2
+    @with_import('alignment')
+    def test_alignment_changes_with_open_gap_penalties(align):
+        seq1 = 'ataagagtgattggcgatatcggctccgtacgtaccctttctactctcgggctcttccccgttagtttaaatctaatctctttataaacggcacttcc'
+        seq2 = 'ataagagtgattggcgtccgtacgtaccctttctactctcaaactcttgttagtttaaatctaatctaaactttataaacggcacttcctgtgtgtccat'
+    
+        score_a, seq1_a, seq2_a = align(seq1, seq2, gap_open_penalty=2, indel_penalty=.5)
+    
+        expected_align1 = 'ataagagtgattggcgatatcggctccgtacgtaccctttctactctcgggctcttccccgttagtttaaatctaatct---ctttataaacggcactt---------cc--'
+        expected_align2 = 'ataagagtgattggcg---t-----ccgtacgtaccctttctactctcaaactctt----gttagtttaaatctaatctaaactttataaacggcacttcctgtgtgtccat'
+    
+>       assert score_a == -221
+E       assert -233.0 == -221
+
+CS-312\Projects\Project_Alignment\test_alignment.py:331: AssertionError</pre>
+                            
+                        
+                    
+                        
+                            <li class="fail">Test Large Alignment Open Gap — Fail</li>
+                            
+                                <pre class="failure-output">align = <function align at 0x000001FD50C46A20>
+
+    @stretch2
+    @with_import('alignment')
+    def test_large_alignment_open_gap(align):
+        seq1 = read_sequence(test_files / 'bovine_coronavirus.txt')[:1000]
+        seq2 = read_sequence(test_files / 'murine_hepatitus.txt')[:1000]
+    
+        score, aseq1, aseq2 = align(seq1, seq2, gap_open_penalty=10, indel_penalty=.5)
+    
+        with open(test_files / f'large_bovine_murine_open_gap_1000.txt') as file:
+            expected_score, expected_align1, expected_align2 = file.read().splitlines()
+    
+>       assert score == int(expected_score)
+E       AssertionError: assert -1904.0 == -1376
+E        +  where -1376 = int('-1376')
+
+CS-312\Projects\Project_Alignment\test_alignment.py:356: AssertionError</pre>
+                            
+                        
+                    
+                    </ul>
+                    
+                </div>
+            </div>
+            
+            
+        </main>
+        <footer>
+            <p>Generated by byu_pytest_utils on October 31, 2025 06:05 AM</p>
+        </footer>
+    </div>
+</body>
+</html>

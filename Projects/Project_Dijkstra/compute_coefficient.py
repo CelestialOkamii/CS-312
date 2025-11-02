@@ -12,7 +12,7 @@ def compute_coefficient(observed_performance, theoretical_order):
 
 def main():
     def theoretical_big_o(v, e):
-        return (v+e) * math.log(v)
+        return (v * e)
 
     coeffs = compute_coefficient(runtimes, theoretical_big_o)
 
