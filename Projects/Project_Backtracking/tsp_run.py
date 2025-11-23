@@ -67,7 +67,7 @@ def main(n, *find_tours: Solver, timeout=60, **kwargs):
         plot_tour(locations, stats[-1].tour, ax=ax)
         ax.set_title(f'{name} ({stats[-1].score})')
 
-    plt.savefig("core_empirical.png")
+    plt.savefig("baseline_vs_core_empirical.png")
     plt.show()
 
 
@@ -75,14 +75,14 @@ if __name__ == '__main__':
     from tsp_solve_backtracking import (random_tour, greedy_tour, backtracking, backtracking_bssf)
 
     main(
-        20,
+        10,
         # random_tour,
-        # greedy_tour,
+        greedy_tour,
         backtracking,
         # backtracking_bssf,
         euclidean=True,
         reduction=0.2,
         normal=False,
         seed=4321,
-        timeout=60
+        timeout=120
     )

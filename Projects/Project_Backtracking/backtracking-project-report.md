@@ -1,5 +1,7 @@
 # Project Report - Backtracking
 
+Met with Ethan Rushforth for review.
+
 ## Baseline
 
 ### Design Experience
@@ -55,8 +57,8 @@ take the most time making the time complexity O(n^3).
 #### Space
 
 ```py 
-def greedy_tour(edges: list[list[float]], timer: Timer) -> list[SolutionStats]:   # O(n) - nothing takes up more than n amount of space
-    paths = []                               # O(n) - initial creation takes up constant space but it is added to up to n times which requires more space per add so it can take up to n amount of space
+def greedy_tour(edges: list[list[float]], timer: Timer) -> list[SolutionStats]:   # O(n^2) - nothing takes up more than n amount of space
+    paths = []                               # O(n^2) - initial creation takes up constant space but it is added to up to n times which requires more space per add so it can take up to n amount of space for every addition of a path which happens n times
     best_score = math.inf
     for i in range(len(edges)):           
         path = [i]                           # O(n) - path will get one element added at a time but this will happen n times for a complete path which means that ultimately n amount of space will be needed
@@ -85,7 +87,7 @@ def greedy_tour(edges: list[list[float]], timer: Timer) -> list[SolutionStats]: 
         if score < best_score:
             best_score = score
             new_path = SolutionStats(path, score, timer.time(), 0, 0, 0, 0, 0)
-            paths.append(new_path)             # O(n) - paths gets one item added at a time like path, but it can be added to up to n number of times which takes up n amount of additional space
+            paths.append(new_path)             # O(n^2) - paths gets one item of size n added at a time like path, but it can be added to up to n number of times which takes up n amount of additional space
         if timer.time_out():
             return paths
     return paths
@@ -93,8 +95,8 @@ def greedy_tour(edges: list[list[float]], timer: Timer) -> list[SolutionStats]: 
 
 The graph given as a parameter takes up O(nm) space because it contains n items each of size m, however if this is disregarded, the lists
 take up the most space. Some of the lists take up n amount of space because they are added up to n number of times which requires additional space to be added n times.
-Others simply have n number of items added all at once requiring the list to be size n. Regardless, nothing takes up more than O(n) space except the parameter
-which gives the function a space complexity of O(n).
+Others simply have n number of items added all at once requiring the list to be size n. Regardless, nothing takes up more than O(n^2) from the paths list
+which gives the function a space complexity of O(n^2).
 
 ### Empirical Data - Greedy
 
@@ -225,6 +227,7 @@ This means that the function will have a space complexity of O(n^2).
 It seems like backtracking is far more costly than being greedy both in the amount of time and space it takes to run, however backtracking
 seems to be more precise as it considers every possibility.
 
+![](baseline_vs_core_empirical.png)
 
 ### Water Bottle Scenario 
 
