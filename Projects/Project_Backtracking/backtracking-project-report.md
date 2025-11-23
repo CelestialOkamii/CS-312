@@ -242,7 +242,7 @@ much earlier. This will allow me to have the quickness of the greedy algorithm w
 
 **Algorithm:** 
 
-Because of the number of tasks and the time contstraint i'd use the greedy algorithm. Using bssf would provide an order with a better overall cost, but
+Because of the number of tasks and the time constraint i'd use the greedy algorithm. Using bssf would provide an order with a better overall cost, but
 it would still take much longer than greedy and as in this situation, time is much more important than cost it makes sense to
 choose the fastest algorithm.
 
@@ -252,7 +252,7 @@ choose the fastest algorithm.
 
 Because the number of tasks isn't too big and time isn't an issue it makes sense to choose either bssf or backtracking. If I had to choose one, 
 I'd use backtracking because my boss wants the best possible solution and while bssf is likely to find a good or even the best
-solution, I know that I will be gaurenteed to find the best solution using backtracking which is what matters most in this scenario.
+solution, I know that I will be gaunted to find the best solution using backtracking which is what matters most in this scenario.
 
 
 ## Stretch 1
