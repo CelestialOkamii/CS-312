@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison Report</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            flex-direction: column;
+            font-family: monospace, sans-serif;
+            line-height: 1.4;
+            background-color: #f9f9f9;
+            color: rgb(0, 46, 93);
+        }
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        header, footer {
+            background-color: rgb(0, 46, 93);
+            color: white;
+            text-align: center;
+        }
+        header h1, footer p {
+            margin: 0;
+            padding: 5px 0;
+        }
+        header {
+            margin-bottom: 10px;
+        }
+        footer {
+            margin-top: 10px;
+        }
+        h2 {
+            padding: 5px 0;
+        }
+        .test-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 50px;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .test-result-passed, .test-result-failed {
+            padding: 5px;
+            border-radius: 5px;
+            margin: 10px 50px;
+            position: relative;
+        }
+        .test-result-passed {
+            background-color: #d4edda;
+            border: 2px solid #c3e6cb;
+        }
+        .test-result-failed {
+            background-color: #f8d7da;
+            border: 2px solid #f5c6cb;
+        }
+        .result-header {
+            text-align: center;
+        }
+        .result-header h2 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .result-subheader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            font-size: 1em;
+            padding: 0 10px;
+        }
+        .result-subheader .status, .result-subheader .score {
+            font-size: 1em;
+        }
+        .result-subheader .status h2, .result-subheader .score h2 {
+            display: inline;
+            font-size: 1em;
+            margin-right: 5px;
+        }
+        ul.test-info {
+            list-style-type: none;
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        ul.test-info li {
+            margin: 6px 0;
+        }
+        ul.test-info li.fail {
+            color: #721c24;
+        }
+        ul.test-info li.pass {
+            color: #155724;
+        }
+        .blocked-message {
+            margin: 10px 20px;
+            padding: 10px;
+            font-style: italic;
+            color: #555;
+        }
+        pre.failure-output {
+            background: #fff0f0;
+            border: 1px solid #f5c6cb;
+            padding: 8px;
+            border-radius: 3px;
+            margin-top: 5px;
+            white-space: pre-wrap;
+        }
+        .comparison-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 0 10px;
+        }
+        .section {
+            flex: 1;
+            min-width: 300px;
+        }
+        .content {
+            background: rgb(245, 245, 245);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1>Test Backtracking Results</h1>
+        </header>
+        <main class="main-content">
+            <div class="test-summary">
+                <span>Passed: 2 / 3</span>
+                <span>Total Score: 0 / 0</span>
+            </div>
+            
+            
+            <div class="test-result-passed">
+                <div class="content-wrapper">
+                    <div class="result-header">
+                        <h2>baseline</h2>
+                        <div class="result-subheader">
+                            <div class="status">
+                                <h2>Passed</h2>
+                            </div>
+                            <div class="score">
+                                <h2>Score:</h2> 0 / 0
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <ul class="test-info">
+                    
+                        
+                            <li class="pass">Test Small Greedy — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Multiple Solutions Greedy — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Medium Greedy — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Large Greedy — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Massive Greedy — Pass</li>
+                        
+                    
+                    </ul>
+                    
+                </div>
+            </div>
+            
+            <div class="test-result-passed">
+                <div class="content-wrapper">
+                    <div class="result-header">
+                        <h2>core</h2>
+                        <div class="result-subheader">
+                            <div class="status">
+                                <h2>Passed</h2>
+                            </div>
+                            <div class="score">
+                                <h2>Score:</h2> 0 / 0
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <ul class="test-info">
+                    
+                        
+                            <li class="pass">Test Tiny Backtracking — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Small Backtracking — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Medium Backtracking — Pass</li>
+                        
+                    
+                        
+                            <li class="pass">Test Large Backtracking — Pass</li>
+                        
+                    
+                    </ul>
+                    
+                </div>
+            </div>
+            
+            <div class="test-result-failed">
+                <div class="content-wrapper">
+                    <div class="result-header">
+                        <h2>stretch1</h2>
+                        <div class="result-subheader">
+                            <div class="status">
+                                <h2>Failed</h2>
+                            </div>
+                            <div class="score">
+                                <h2>Score:</h2> 0 / 0
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <ul class="test-info">
+                    
+                        
+                            <li class="fail">Test Smaller Backtracking With Bssf — Fail</li>
+                            
+                                <pre class="failure-output">@stretch1
+    def test_smaller_backtracking_with_bssf():
+        locations, edges = generate_network(
+            12,
+            euclidean=True,
+            reduction=0,
+            normal=False,
+            seed=3,
+        )
+    
+        backtracking_bssf_timer = Timer(30)
+        stats_bssf_backtracking = backtracking_bssf(edges, backtracking_bssf_timer)
+        assert backtracking_bssf_timer.time() < 35
+    
+>       assert_valid_tours(edges, stats_bssf_backtracking)
+
+CS-312\Projects\Project_Backtracking\test_backtracking.py:206: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+edges = [[0.0, 0.145, 0.616, 0.369, 0.311, 0.761, ...], [0.145, 0.0, 0.596, 0.426, 0.386, 0.64, ...], [0.616, 0.596, 0.0, 0.98..., 0.651, 1.049, ...], [0.311, 0.386, 0.403, 0.651, 0.0, 0.773, ...], [0.761, 0.64, 0.548, 1.049, 0.773, 0.0, ...], ...]
+stats = []
+
+    def assert_valid_tours(edges, stats):
+>       assert len(stats) > 0
+E       assert 0 > 0
+E        +  where 0 = len([])
+
+CS-312\Projects\Project_Backtracking\test_utils.py:18: AssertionError</pre>
+                            
+                        
+                    
+                        
+                            <li class="fail">Test Medium Backtracking With Bssf — Fail</li>
+                            
+                                <pre class="failure-output">@stretch1
+    def test_medium_backtracking_with_bssf():
+        locations, edges = generate_network(
+            15,
+            euclidean=True,
+            reduction=0.2,
+            normal=False,
+            seed=312,
+        )
+    
+        backtracking_bssf_timer = Timer(30)
+        stats_bssf_backtracking = backtracking_bssf(edges, backtracking_bssf_timer)
+        assert backtracking_bssf_timer.time() < 35
+    
+>       assert_valid_tours(edges, stats_bssf_backtracking)
+
+CS-312\Projects\Project_Backtracking\test_backtracking.py:223: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+edges = [[0.0, 0.8, 0.564, 0.219, inf, 0.595, ...], [0.8, 0.0, 0.94, 0.717, 1.08, 0.3, ...], [0.564, 0.94, 0.0, 0.377, 0.497, ...nf, 0.0, 0.374, inf, ...], [0.318, 1.08, 0.497, 0.374, 0.0, 0.83, ...], [0.595, 0.3, 0.64, 0.456, 0.83, 0.0, ...], ...]
+stats = []
+
+    def assert_valid_tours(edges, stats):
+>       assert len(stats) > 0
+E       assert 0 > 0
+E        +  where 0 = len([])
+
+CS-312\Projects\Project_Backtracking\test_utils.py:18: AssertionError</pre>
+                            
+                        
+                    
+                    </ul>
+                    
+                </div>
+            </div>
+            
+            
+        </main>
+        <footer>
+            <p>Generated by byu_pytest_utils on November 22, 2025 06:33 PM</p>
+        </footer>
+    </div>
+</body>
+</html>
