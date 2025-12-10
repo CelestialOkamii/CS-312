@@ -118,7 +118,7 @@ which gives the function a space complexity of O(n^2).
 - Theoretical order of growth: O(n^3)
 - Empirical order of growth (if different from theoretical): Same
 
-![](https://github.com/CelestialOkamii/CS-312/blob/main/Projects/Project_Backtracking/baseline_empirical.png)
+![](baseline_empirical.png)
 
 ## Core
 
@@ -220,14 +220,14 @@ This means that the function will have a space complexity of O(n^2).
 - Theoretical order of growth: O(n! * n)
 - Empirical order of growth (if different from theoretical): Same
 
-![](https://github.com/CelestialOkamii/CS-312/blob/main/Projects/Project_Backtracking/core_empirical.png)
+![](core_empirical.png)
 
 ### Greedy v Backtracking
 
 It seems like backtracking is far more costly than being greedy both in the amount of time and space it takes to run, however backtracking
 seems to be more precise as it considers every possibility.
 
-![](https://github.com/CelestialOkamii/CS-312/blob/main/Projects/Project_Backtracking/baseline_vs_core_empirical.png)
+![](baseline_vs_core_empirical.png)
 
 ### Water Bottle Scenario 
 
