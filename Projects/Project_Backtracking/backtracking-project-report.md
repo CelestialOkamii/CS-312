@@ -118,7 +118,7 @@ which gives the function a space complexity of O(n^2).
 - Theoretical order of growth: O(n^3)
 - Empirical order of growth (if different from theoretical): Same
 
-![](baseline_empirical.png)
+![](https://github.com/CelestialOkamii/CS-312/blob/main/Projects/Project_Backtracking/baseline_empirical.png)
 
 ## Core
 
