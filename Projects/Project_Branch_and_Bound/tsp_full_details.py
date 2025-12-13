@@ -46,8 +46,8 @@ def main(n, find_tour: Solver, timeout=60, **kwargs):
     plot_queue_size({name: stats}, ax=axs[4])
     plot_edge_probability({name: stats}, edges, ax=axs[5])
     plot_solution_evolution([st.tour for st in stats], ax=axs[6])
+    plt.savefig("core_empirical.png")
     plt.show()
-    plt.savefig("core_emperical.png")
 
 
 if __name__ == '__main__':
