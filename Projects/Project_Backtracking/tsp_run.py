@@ -1,88 +1,76 @@
 import math
-
 import matplotlib.pyplot as plt
 
-from utils import (generate_network, Timer, Solver, SolutionStats)
-from tsp_plot import (plot_solutions, plot_solution_progress_compared, plot_tour)
+from utils import generate_network, Timer
+from tsp_solve_backtracking import greedy_tour, backtracking
 
 
-def format_text_summary(name: str, stats: SolutionStats):
-    return (
-        f'--------- {name} ---------\n'
-        f'Score: {round(stats.score, 3)} \n'
-        f'Time: {round(stats.time, 4)} sec \n'
-        f'Coverage: {round(stats.fraction_leaves_covered * 100, 4)}% covered \n'
-        f'Max Queue Size: {stats.max_queue_size} \n'
-        f'# nodes expanded: {stats.n_nodes_expanded} \n'
-        f'# nodes pruned: {stats.n_nodes_pruned}\n'
-    )
+def run_scaling_experiment(
+    ns,
+    timeout=60,
+    seed=306,
+    **kwargs
+):
+    greedy_times = []
+    backtracking_times = []
 
+    for n in ns:
+        print(f"Running n = {n}")
 
-def format_plot_summary(name: str, stats: SolutionStats):
-    return (
-        f'{name}: {round(stats.score, 3)} '
-        f'({round(stats.time, 4)} sec, '
-        f'{round(stats.fraction_leaves_covered * 100, 4)}% covered)'
-    )
+        locations, edges = generate_network(n, seed=seed, **kwargs)
 
-
-def main(n, *find_tours: Solver, timeout=60, **kwargs):
-    # Generate
-    print(f'Generating network of size {n} with args: {kwargs}')
-    locations, edges = generate_network(n, **kwargs)
-
-    # Solve
-    print('Running TSP Solvers...')
-
-    all_stats = {}
-    find_tour: Solver
-    for find_tour in find_tours:
+        # --- Greedy ---
         timer = Timer(timeout)
-        stats = find_tour(edges, timer)
-        name = find_tour.__name__
-        all_stats[name] = stats
-        if stats:
-            print(format_text_summary(name, stats[-1]))
-        else:
-            print(f'No solutions for {name}')
-            print()
+        g_stats = greedy_tour(edges, timer)
+        greedy_times.append(g_stats[-1].time)
 
-    # Report and Plot
-    n_plots = 2  # solutions, solution progress
-    n_plots += len(all_stats)  # tours
+        # --- Backtracking ---
+        timer = Timer(timeout)
+        b_stats = backtracking(edges, timer)
+        backtracking_times.append(b_stats[-1].time)
 
-    fig, axs = plt.subplots(n_plots, 1, figsize=(8, 8 * n_plots))
-    axs = axs.flatten()
+    return greedy_times, backtracking_times
 
-    plot_solutions(all_stats, axs[0])
 
-    plot_solution_progress_compared(
-        {
-            name: all_stats[name][-1].tour
-            for name in all_stats
-            if not math.isinf(all_stats[name][-1].score)
-        }, edges, ax=axs[1])
+def plot_empirical_vs_theoretical(ns, greedy_times, backtracking_times):
+    plt.figure(figsize=(8, 6))
 
-    for (name, stats), ax in zip(all_stats.items(), axs[2:]):
-        plot_tour(locations, stats[-1].tour, ax=ax)
-        ax.set_title(f'{name} ({stats[-1].score})')
+    # Empirical curves
+    plt.plot(ns, greedy_times, marker='o', label="Greedy (empirical)")
+    plt.plot(ns, backtracking_times, marker='o', label="Backtracking (empirical)")
 
-    plt.savefig("baseline_vs_core_empirical.png")
+    # --- Theoretical curves (scaled for shape comparison) ---
+    n0 = ns[0]
+
+    greedy_theory = [greedy_times[0] * (n / n0) ** 2 for n in ns]
+    backtracking_theory = [
+        backtracking_times[0] * math.factorial(n) / math.factorial(n0)
+        for n in ns
+    ]
+
+    plt.plot(ns, greedy_theory, linestyle='--', label="Greedy O(n²)")
+    plt.plot(ns, backtracking_theory, linestyle='--', label="Backtracking O(n!)")
+
+    plt.xlabel("Problem size (n)")
+    plt.ylabel("Runtime (seconds)")
+    plt.title("Empirical Runtime vs Theoretical Growth")
+    plt.legend()
+    plt.grid(True)
+
+    plt.tight_layout()
+    plt.savefig("empirical_vs_theoretical_runtime.png", dpi=300)
     plt.show()
 
 
-if __name__ == '__main__':
-    from tsp_solve_backtracking import (random_tour, greedy_tour, backtracking, backtracking_bssf)
+if __name__ == "__main__":
+    ns = [5, 7, 9, 11]  # adjust upward carefully
 
-    main(
-        10,
-        # random_tour,
-        greedy_tour,
-        backtracking,
-        # backtracking_bssf,
+    greedy_times, backtracking_times = run_scaling_experiment(
+        ns,
+        timeout=60,
         euclidean=True,
         reduction=0.2,
-        normal=False,
-        seed=4321,
-        timeout=120
+        normal=False
     )
+
+    plot_empirical_vs_theoretical(ns, greedy_times, backtracking_times)

@@ -227,7 +227,7 @@ This means that the function will have a space complexity of O(n^2).
 It seems like backtracking is far more costly than being greedy both in the amount of time and space it takes to run, however backtracking
 seems to be more precise as it considers every possibility.
 
-![](baseline_vs_core_empirical.png)
+![](empirical_vs_theoretical_runtime.png)
 
 ### Water Bottle Scenario 
 
